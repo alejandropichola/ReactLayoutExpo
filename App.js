@@ -4,62 +4,72 @@ import { createDrawerNavigator, createStackNavigator, createAppContainer } from 
 
 import HomeComponent from './Components/HomeComponent'
 import LoginComponent from './Components/LoginComponent'
+import ForgotPasswordComponent from './Components/ForgotPasswordComponent'
 
 class NavigationDrawerStructure extends React.Component {
   toggleDrawer = () => {
-    this.props.navigationProps.toggleDrawer();
+    this.props.navigationProps.toggleDrawer()
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <View>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image source={require('./assets/images/drawer.png')}
-            style={{width:25, height: 25, marginLeft: 5}}
+                 style={{ width: 25, height: 25, marginLeft: 5 }}
           ></Image>
         </TouchableOpacity>
       </View>
     )
   }
 }
-const OptionOne = createStackNavigator({
+
+const OptionTwo = createStackNavigator({
   Home: {
     screen: HomeComponent,
-    navigationOptions: ({navigation}) => ({
-      title: 'Home',
+    navigationOptions: ({ navigation }) => ({
+      title: 'Inicio',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#FF9800'
+        backgroundColor: '#5388d0'
       },
       headerTintColor: '#fff'
     })
   }
 })
 
-const OptionTwo = createStackNavigator({
+const OptionOne = createStackNavigator({
   Login: {
     screen: LoginComponent,
-    navigationOptions: ({navigation}) => ({
-      title: 'Login',
+    navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#FF9800'
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  ForgotPassword: {
+    screen: ForgotPasswordComponent,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#5388d0'
       },
       headerTintColor: '#fff'
     })
   }
-})
+}, { initialRouteName: 'Login'})
 const DrawerNavigation = createDrawerNavigator({
   Screen1: {
     screen: OptionOne,
     navigationOptions: {
-      drawerLabel: 'Inicio'
+      drawerLabel: 'Login'
     }
   },
   Screen2: {
     screen: OptionTwo,
     navigationOptions: {
-      drawerLabel: 'Login'
+      drawerLabel: 'Inicio'
     }
   }
 })
