@@ -11,6 +11,4 @@ class LoginComponent extends React.Component {
   }
 }
 
-export {
-  LoginComponent
-}
+export default LoginComponent

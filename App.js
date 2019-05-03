@@ -1,12 +1,66 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
-import RouteNotAuthentication from './Components/RouteNotAuth/RouteNotAuth'
+import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
+import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
 
-const appNavigator = createStackNavigator({
+import HomeComponent from './Components/HomeComponent'
+import LoginComponent from './Components/LoginComponent'
+
+class NavigationDrawerStructure extends React.Component {
+  toggleDrawer = () => {
+    this.props.navigationProps.toggleDrawer();
+  }
+
+  render() {
+    return(
+      <View>
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
+          <Image source={require('./assets/images/drawer.png')}
+            style={{width:25, height: 25, marginLeft: 5}}
+          ></Image>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
+const OptionOne = createStackNavigator({
   Home: {
-    screen: RouteNotAuthentication
+    screen: HomeComponent,
+    navigationOptions: ({navigation}) => ({
+      title: 'Home',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#FF9800'
+      },
+      headerTintColor: '#fff'
+    })
   }
 })
 
-export default createAppContainer(appNavigator)
+const OptionTwo = createStackNavigator({
+  Login: {
+    screen: LoginComponent,
+    navigationOptions: ({navigation}) => ({
+      title: 'Login',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#FF9800'
+      },
+      headerTintColor: '#fff'
+    })
+  }
+})
+const DrawerNavigation = createDrawerNavigator({
+  Screen1: {
+    screen: OptionOne,
+    navigationOptions: {
+      drawerLabel: 'Inicio'
+    }
+  },
+  Screen2: {
+    screen: OptionTwo,
+    navigationOptions: {
+      drawerLabel: 'Login'
+    }
+  }
+})
+export default createAppContainer(DrawerNavigation)
