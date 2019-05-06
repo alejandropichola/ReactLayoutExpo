@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, Image, View, TouchableOpacity,Alert } from 'react-native'
 import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
-
+import { Ionicons } from '@expo/vector-icons'
 import HomeComponent from './Components/HomeComponent'
 import LoginComponent from './Components/LoginComponent'
 import ForgotPasswordComponent from './Components/ForgotPasswordComponent'
@@ -63,21 +63,27 @@ const DrawerNavigation = createDrawerNavigator({
   ScreenHome: {
     screen: OptionTwo,
     navigationOptions: {
-      drawerLabel: 'Inicio'
-    }
+      drawerLabel: 'Inicio',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name="md-home" size={24} style={{ color: tintColor }} />
+      ),
+    },
   },
   ScreenLogin: {
     screen: OptionOne,
     navigationOptions: {
-      drawerLabel: 'Iniciar sesión'
+      drawerLabel: 'Iniciar sesión',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name="md-log-in" size={24} style={{ color: tintColor }} />
+      ),
     }
   },
-  ScreenLogOut: {
+  /*ScreenLogOut: {
     screen: Alert.alert('cerrar'),
     navigationOptions: {
       drawerLabel: 'Cerrar Seción'
     }
-  },
+  },*/
 }, {
   initialRouteName: 'ScreenLogin'
 })

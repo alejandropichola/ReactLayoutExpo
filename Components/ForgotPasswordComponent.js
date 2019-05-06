@@ -26,6 +26,8 @@ class ForgotPasswordComponent extends React.Component {
                               value={this.props.email}
                               placeHolder='Ingrese correo'
                               secure={false}
+                              iconLeft='md-mail'
+                              sizeIcon={18}
           />
           <Text>{`\n`}</Text>
           <Button title='Enviar' onPress={this.forgotPass}></Button>
