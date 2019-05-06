@@ -8,7 +8,7 @@ class ForgotPasswordComponent extends React.Component {
   render() {
     return(
       <View>
-        <View>
+        <View style={style.container}>
           <Text>Recuperar contraseña?</Text>
           <TextInput style={style.inputType}
                      placeholder='Ingrese correo eléctronico'/>
@@ -20,6 +20,10 @@ class ForgotPasswordComponent extends React.Component {
 }
 
 const style = StyleSheet.create({
+  container: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
   inputType: {
     height: 50,
     marginBottom: 2

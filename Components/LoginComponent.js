@@ -8,6 +8,7 @@ import {
   Keyboard,
   Alert
 } from 'react-native'
+import InputTextComponent from './Common/InputTextComponent'
 
 class LoginComponent extends React.Component {
   constructor (props) {
@@ -16,20 +17,6 @@ class LoginComponent extends React.Component {
       style: {}
     }
   }
-
-  onFocus () {
-    const state = this.state
-    this.state.style = {
-      backgroundColor: '#5388d0'
-    }
-    this.setState({state})
-  }
-  onBlur () {
-    const state = this.state
-    this.state.style = {}
-    this.setState({state})
-  }
-
   submitForm = () => {
     Keyboard.dismiss()
   }
@@ -40,16 +27,20 @@ class LoginComponent extends React.Component {
         <View style={style.container}>
           <Text>{`\n`}</Text>
           <Text style={style.titleLogin}>Iniciar sesión</Text>
-          <TextInput style={[style.inputType, this.state.style]}
-                     onFocus={() => this.onFocus()}
-                     onBlur={() => this.onBlur()}
-                     placeholder="Ingrese usuario"
+          <InputTextComponent label='Usuario'
+                              placeHolder='Ingrese texto'
+                              note=''
+                              MessageError=''
+                              secure={false}
           />
-          <TextInput style={style.inputType}
-                     placeholder="Ingrese contraseña"
-                     secureTextEntry={true}
+          <InputTextComponent label='Contraseña'
+                              placeHolder='Ingrese contraseña'
+                              note=''
+                              MessageError=''
+                              secure={true}
           />
-          <Button title='Entrar' onPress={this.submitForm}/>
+          <Text>{`\n`}</Text>
+          <Button title='Entrar' style={{marginTop: 2}} onPress={this.submitForm}/>
           <Text style={style.forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
             Recuperar contraseña?
           </Text>

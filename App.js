@@ -13,7 +13,7 @@ class NavigationDrawerStructure extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={style.container}>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image source={require('./assets/images/drawer.png')}
                  style={{ width: 25, height: 25, marginLeft: 5 }}
@@ -71,6 +71,12 @@ const DrawerNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerLabel: 'Inicio'
     }
+  }
+})
+const style = StyleSheet.create({
+  container: {
+    marginLeft: 10,
+    marginRight: 10,
   }
 })
 export default createAppContainer(DrawerNavigation)
