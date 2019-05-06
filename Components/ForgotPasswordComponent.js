@@ -1,32 +1,38 @@
 import React from 'react'
-import {StyleSheet, View, Button, Text, TextInput, Keyboard} from 'react-native'
+import { View, Button, Text, Keyboard } from 'react-native'
+import InputTextComponent from './Common/InputTextComponent'
+import { containerMargin } from '../assets/Styles'
+import {titleOne} from '../assets/Styles'
 
 class ForgotPasswordComponent extends React.Component {
-  forgotPass() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: null
+    }
+  }
+  forgotPass () {
     Keyboard.dismiss()
   }
-  render() {
-    return(
+
+  render () {
+    return (
       <View>
-        <View style={style.container}>
-          <Text>Recuperar contraseña?</Text>
-          <TextInput style={style.inputType}
-                     placeholder='Ingrese correo eléctronico'/>
+        <View style={containerMargin}>
+          <Text>{`\n`}</Text>
+          <Text style={titleOne}>Recuperar contraseña</Text>
+          <InputTextComponent label='Correo'
+                              onChangeText={(email) => this.setState({email})}
+                              value={this.props.email}
+                              placeHolder='Ingrese correo'
+                              secure={false}
+          />
+          <Text>{`\n`}</Text>
           <Button title='Enviar' onPress={this.forgotPass}></Button>
         </View>
       </View>
-    );
+    )
   }
 }
 
-const style = StyleSheet.create({
-  container: {
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  inputType: {
-    height: 50,
-    marginBottom: 2
-  },
-})
 export default ForgotPasswordComponent

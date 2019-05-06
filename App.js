@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, Image, View, TouchableOpacity,Alert } from 'react-native'
 import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
 
 import HomeComponent from './Components/HomeComponent'
@@ -60,18 +60,26 @@ const OptionOne = createStackNavigator({
   }
 }, { initialRouteName: 'Login'})
 const DrawerNavigation = createDrawerNavigator({
-  Screen1: {
-    screen: OptionOne,
-    navigationOptions: {
-      drawerLabel: 'Login'
-    }
-  },
-  Screen2: {
+  ScreenHome: {
     screen: OptionTwo,
     navigationOptions: {
       drawerLabel: 'Inicio'
     }
-  }
+  },
+  ScreenLogin: {
+    screen: OptionOne,
+    navigationOptions: {
+      drawerLabel: 'Iniciar sesión'
+    }
+  },
+  ScreenLogOut: {
+    screen: Alert.alert('cerrar'),
+    navigationOptions: {
+      drawerLabel: 'Cerrar Seción'
+    }
+  },
+}, {
+  initialRouteName: 'ScreenLogin'
 })
 const style = StyleSheet.create({
   container: {
