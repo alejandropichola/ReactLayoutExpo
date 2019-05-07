@@ -4,12 +4,11 @@ import {
   Button,
   View,
   Keyboard,
-  findNodeHandle,
   Alert
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
-import { forGot, containerMargin, titleOne } from '../assets/Styles'
-
+import { forGot, containerMargin, container, titleOne } from '../assets/Styles'
+import {}
 class LoginComponent extends React.Component {
   focusNextField (id) {
     this.inputs[id].focus()
@@ -85,9 +84,8 @@ class LoginComponent extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={container}>
         <View style={containerMargin}>
-          <Text>{`\n`}</Text>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'
                               placeHolder='Ingrese usuario'

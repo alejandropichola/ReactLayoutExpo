@@ -4,8 +4,9 @@ const { width, height } = Dimensions.get('window')
 
 export const container =
   {
-    width: width,
-    height: height
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
   }
 export const errorMsg = {
   color: 'red'

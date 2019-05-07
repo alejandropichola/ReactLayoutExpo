@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Button, Text, Keyboard } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
-import { containerMargin } from '../assets/Styles'
+import { container, containerMargin } from '../assets/Styles'
 import {titleOne} from '../assets/Styles'
 
 class ForgotPasswordComponent extends React.Component {
@@ -17,9 +17,8 @@ class ForgotPasswordComponent extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={container}>
         <View style={containerMargin}>
-          <Text>{`\n`}</Text>
           <Text style={titleOne}>Recuperar contraseña</Text>
           <InputTextComponent label='Correo'
                               onChangeText={(email) => this.setState({email})}
