@@ -4,16 +4,16 @@ import {
   Button,
   View,
   Keyboard,
-  KeyboardAvoidingView
+  KeyboardAvoidingView, Alert
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
 import { forGot, containerMargin, container, titleOne } from '../assets/Styles'
+import {Setter, Getter} from '../Services/Sessions'
 
 class LoginComponent extends React.Component {
   focusNextField (id) {
     this.inputs[id].focus()
   }
-
   constructor (props) {
     super(props)
     this.focusNextField = this.focusNextField.bind(this)
@@ -78,7 +78,10 @@ class LoginComponent extends React.Component {
   submitForm = () => {
     Keyboard.dismiss()
     if (this.validationForm()) {
-      this.props.navigation.navigate('App');
+      this.props.navigation.navigate('App')
+      //Setter.setSession('Prueba')
+      //const data = Getter.getSession()
+     // Alert.alert('prueba session',data)
     }
   }
 
