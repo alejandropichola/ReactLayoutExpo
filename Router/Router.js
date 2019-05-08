@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, Image, View, TouchableOpacity,Alert } from 'react-native'
-import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
+import { createDrawerNavigator, createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
@@ -10,7 +10,6 @@ class NavigationDrawerStructure extends React.Component {
     toggleDrawer = () => {
       this.props.navigationProps.toggleDrawer()
     }
-  
     render () {
       return (
         <View style={style.container}>
@@ -37,14 +36,13 @@ class NavigationDrawerStructure extends React.Component {
       })
     }
   })
-  
+
   const OptionOne = createStackNavigator({
     Login: {
       screen: LoginComponent,
       navigationOptions: ({ navigation }) => ({
-        headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
         headerStyle: {
-          backgroundColor: '#5388d0'
+          backgroundColor: 'transparent'
         },
         headerTintColor: '#fff'
       })
@@ -68,16 +66,7 @@ class NavigationDrawerStructure extends React.Component {
           <Ionicons name="md-home" size={24} style={{ color: tintColor }} />
         ),
       },
-    },
-    ScreenLogin: {
-      screen: OptionOne,
-      navigationOptions: {
-        drawerLabel: 'Iniciar sesión',
-        drawerIcon: ({ tintColor }) => (
-          <Ionicons name="md-log-in" size={24} style={{ color: tintColor }} />
-        ),
-      }
-    },
+    }
     /*ScreenLogOut: {
       screen: Alert.alert('cerrar'),
       navigationOptions: {
@@ -85,12 +74,21 @@ class NavigationDrawerStructure extends React.Component {
       }
     },*/
   }, {
-    initialRouteName: 'ScreenLogin'
+    initialRouteName: 'ScreenHome'
   })
+const navStack = createAppContainer(createSwitchNavigator(
+  {
+    App: DrawerNavigation,
+    Auth: OptionOne,
+  },
+  {
+    initialRouteName: 'Auth',
+  }
+))
   const style = StyleSheet.create({
     container: {
       marginLeft: 10,
       marginRight: 10,
     }
   })
-  export default DrawerNavigation
+  export default navStack

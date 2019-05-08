@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Button, Text, Keyboard } from 'react-native'
+import { View, Button, Text, Keyboard, KeyboardAvoidingView } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
 import { container, containerMargin } from '../assets/Styles'
 import {titleOne} from '../assets/Styles'
@@ -17,7 +17,10 @@ class ForgotPasswordComponent extends React.Component {
 
   render () {
     return (
-      <View style={container}>
+      <KeyboardAvoidingView
+        style={container}
+        behavior='position'
+        keyboardVerticalOffset={-25}>
         <View style={containerMargin}>
           <Text style={titleOne}>Recuperar contraseña</Text>
           <InputTextComponent label='Correo'
@@ -31,7 +34,7 @@ class ForgotPasswordComponent extends React.Component {
           <Text>{`\n`}</Text>
           <Button title='Enviar' onPress={this.forgotPass}></Button>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

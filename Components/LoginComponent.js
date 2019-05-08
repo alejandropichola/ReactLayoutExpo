@@ -4,11 +4,11 @@ import {
   Button,
   View,
   Keyboard,
-  Alert
+  KeyboardAvoidingView
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
 import { forGot, containerMargin, container, titleOne } from '../assets/Styles'
-import {}
+
 class LoginComponent extends React.Component {
   focusNextField (id) {
     this.inputs[id].focus()
@@ -77,14 +77,17 @@ class LoginComponent extends React.Component {
 
   submitForm = () => {
     Keyboard.dismiss()
-    if (!this.validationForm()) {
-      Alert.alert('datos requeridos')
+    if (this.validationForm()) {
+      this.props.navigation.navigate('App');
     }
   }
 
   render () {
     return (
-      <View style={container}>
+      <KeyboardAvoidingView
+        style={container}
+        behavior='position'
+        keyboardVerticalOffset={-25}>
         <View style={containerMargin}>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'
@@ -115,12 +118,13 @@ class LoginComponent extends React.Component {
                               refInput={(input) => { this.secondTextInput = input }}
           />
           <Text>{`\n`}</Text>
-          <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm} disabled={this.state.buttonSubmit}/>
+          <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
+                  disabled={this.state.buttonSubmit}/>
           <Text style={forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
             Recuperar contraseña?
           </Text>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
