@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Button, Text, Keyboard, KeyboardAvoidingView } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
-import { container, containerMargin, titleOne } from '../assets/Styles'
+import { container, containerMargin, titleOne } from '../../assets/Styles'
 
 class ForgotPasswordComponent extends React.Component {
   constructor(props) {

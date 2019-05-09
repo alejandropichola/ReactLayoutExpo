@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text, TextInput, View } from 'react-native'
-import { inputType } from '../../assets/Styles'
+import { inputType } from '../../../assets/Styles'
 import { Ionicons } from '@expo/vector-icons'
-import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg } from '../../assets/Styles'
+import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg } from '../../../assets/Styles'
 
 class InputTextComponent extends React.Component {
   constructor (props) {

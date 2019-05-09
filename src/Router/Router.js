@@ -14,7 +14,7 @@ class NavigationDrawerStructure extends React.Component {
       return (
         <View style={style.container}>
           <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-            <Image source={require('../assets/images/drawer.png')}
+            <Image source={require('../../assets/images/drawer.png')}
                    style={{ width: 25, height: 25, marginLeft: 5 }}
             ></Image>
           </TouchableOpacity>

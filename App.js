@@ -1,6 +1,5 @@
 import React from 'react'
-import DrawerNavigation from './Router/Router'
-import {View, Text} from 'react-native'
+import DrawerNavigation from './src/Router/Router'
 
 export default class app extends React.Component {
   render() {

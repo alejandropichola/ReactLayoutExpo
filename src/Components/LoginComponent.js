@@ -4,11 +4,12 @@ import {
   Button,
   View,
   Keyboard,
-  KeyboardAvoidingView, Alert
+  KeyboardAvoidingView, Alert,
+  ActivityIndicator
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
-import { forGot, containerMargin, container, titleOne } from '../assets/Styles'
-import {Setter, Getter} from '../Services/Sessions'
+import { forGot, containerMargin, container, titleOne } from '../../assets/Styles'
+import {onSignIn, isSignedIn} from '../Services/SESSION'
 
 class LoginComponent extends React.Component {
   focusNextField (id) {
@@ -23,8 +24,24 @@ class LoginComponent extends React.Component {
       password: '',
       userErrorMsg: null,
       passErrorMsg: null,
-      buttonSubmit: false
+      buttonSubmit: false,
+      isLoading: true
     }
+  }
+  isLogin=()=> {
+    isSignedIn()
+      .then((res) => {
+        this.setState({isLoading: false})
+        if (res) {
+          this.props.navigation.navigate('App')
+        }
+      })
+      .catch(err => {
+        Alert.alert('error')
+      })
+  }
+  componentDidMount () {
+    this.isLogin()
   }
 
   passIsSet = () => {
@@ -78,10 +95,8 @@ class LoginComponent extends React.Component {
   submitForm = () => {
     Keyboard.dismiss()
     if (this.validationForm()) {
-      this.props.navigation.navigate('App')
-      //Setter.setSession('Prueba')
-      //const data = Getter.getSession()
-     // Alert.alert('prueba session',data)
+      onSignIn()
+      this.isLogin()
     }
   }
 
@@ -91,7 +106,7 @@ class LoginComponent extends React.Component {
         style={container}
         behavior='position'
         keyboardVerticalOffset={-25}>
-        <View style={containerMargin}>
+        { this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : <View style={containerMargin}>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'
                               placeHolder='Ingrese usuario'
@@ -126,7 +141,7 @@ class LoginComponent extends React.Component {
           <Text style={forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
             Recuperar contraseña?
           </Text>
-        </View>
+        </View>}
       </KeyboardAvoidingView>
     )
   }

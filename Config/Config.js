@@ -1,10 +1,11 @@
 const env = 'local'
 const server = {
-  local: 'http://localhost:3000'
+  local: 'http://http://192.168.86.47:3000'
 }
 const api ={
   apiSrvUser: '/users',
-  apiSrvUserItem: '/users/{id}'
+  apiSrvUserItem: '/users/{id}',
+  apiSrvMenu: '/menu'
 }
 
 export default {
