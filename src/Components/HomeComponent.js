@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Image, Button, Alert } from 'react-native'
-import {onSignOut, isSignedIn, getSignIn} from '../Services/SESSION'
+import {onSignOut, isSignedIn } from '../Services/SESSION'
 
 class HomeComponent extends React.Component {
   constructor (props) {
@@ -12,7 +12,6 @@ class HomeComponent extends React.Component {
   }
   componentDidMount () {
     this.auth()
-
     if (this.state.login) {
       Alert.alert('titulo', 'entra en la condicion')
       this.setState({isLogin: 'is login'})
